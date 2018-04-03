@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Grid, Header, List, Segment } from 'semantic-ui-react'
 
-import { CustomMessage, Navbar } from './components'
 import './styling/semantic.less'
 
 const leftItems = [
@@ -34,7 +33,7 @@ const rightItems = [
 ]
 
 const App = () => (
-  <Navbar leftItems={leftItems} rightItems={rightItems}>
+  //<Navbar leftItems={leftItems} rightItems={rightItems}>
     <Segment>
       <Header as='h1'>Your example App</Header>
 
@@ -42,6 +41,8 @@ const App = () => (
         <Grid.Column computer={6} mobile={16}>
           <p>Welcome to your Semantic UI React App! It is awesome <span aria-label='emoji' role='img'>😉</span></p>
 
+          <p>Start from here</p>
+          
           <p>
             This boilerplate is designed to show theming features of SUI with modern environment. It based on the
             awesome{' '}
@@ -113,8 +114,6 @@ const App = () => (
             app. An example is below:
           </p>
 
-          <CustomMessage>Hey, it is a custom message</CustomMessage>
-
           <p>
             Take a look <code>/src/components/CustomMessage</code> directory. The are some important things:
           </p>
@@ -138,7 +137,7 @@ const App = () => (
         </Grid.Column>
       </Grid>
     </Segment>
-  </Navbar>
+  //</Navbar>
 )
 
 export default App

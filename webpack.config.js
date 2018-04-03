@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -8,7 +9,12 @@ module.exports = {
     devtool: 'inline-source-map',
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Development'
+            title: 'Development',
+            inject: true,
+            template: './client/public/index.html',
+        }),
+        new ExtractTextPlugin({
+            filename: '[name].[contenthash].css'
         })
     ],
     resolve: {
@@ -32,15 +38,11 @@ module.exports = {
             {
                 test: /\.less$/,
                 exclude: [
-                  './client/src/components'
+                    path.resolve('client/src', 'components'),
                 ],
-                use: [{
-                   loader: 'style-loader'
-                },{
-                    loader: 'css-loader'
-                },{
-                    loader: 'less-loader'
-                }]
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader', 'less-loader']
+                })
             },
             // "url" loader works like "file" loader except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
@@ -69,7 +71,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
-    target: 'node',
+    target: 'web',
     devServer: {
         inline: true
     }
